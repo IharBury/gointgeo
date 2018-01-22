@@ -9,7 +9,7 @@ type fraction64 struct {
 	numerator, denominator int64
 }
 
-func newCanonicalFraction(numerator, denominator int64) fraction64 {
+func newCanonicalFraction64(numerator, denominator int64) fraction64 {
 	if numerator == math.MinInt64 {
 		panic("The absolute value of the numerator does not fit int64.")
 	}
@@ -18,7 +18,7 @@ func newCanonicalFraction(numerator, denominator int64) fraction64 {
 		panic("The denominator is not positive.")
 	}
 
-	if gcd(numerator, denominator) != 1 {
+	if gcd64(numerator, denominator) != 1 {
 		panic("The numerator and denominator are not coprime.")
 	}
 
@@ -44,7 +44,7 @@ func newFraction64FromNonCanonical(numerator, denominator int64) fraction64 {
 		panic("The absolute value of the denominator does not fit int64.")
 	}
 
-	fractionGcd := gcd(numerator, denominator)
+	fractionGcd := gcd64(numerator, denominator)
 
 	var canonicalNumerator int64
 	if denominator < 0 {
@@ -53,6 +53,6 @@ func newFraction64FromNonCanonical(numerator, denominator int64) fraction64 {
 		canonicalNumerator = numerator / fractionGcd
 	}
 
-	canonicalDenominator := abs(denominator / fractionGcd)
-	return newCanonicalFraction(canonicalNumerator, canonicalDenominator)
+	canonicalDenominator := abs64(denominator / fractionGcd)
+	return newCanonicalFraction64(canonicalNumerator, canonicalDenominator)
 }

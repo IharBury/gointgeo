@@ -2,7 +2,7 @@ package gointgeo
 
 import "math"
 
-func gcd(value1, value2 int64) int64 {
+func gcd64(value1, value2 int64) int64 {
 	if (value1 == 0) && (value2 == 0) {
 		panic("Both values are zero.")
 	}
@@ -15,8 +15,8 @@ func gcd(value1, value2 int64) int64 {
 		panic("The absolute value of the second value does not fit int64.")
 	}
 
-	dividend := abs(value1)
-	divisor := abs(value2)
+	dividend := abs64(value1)
+	divisor := abs64(value2)
 
 	for divisor != 0 {
 		mod := dividend % divisor
